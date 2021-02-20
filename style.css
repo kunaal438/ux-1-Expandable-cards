@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.container::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9;
+    pointer-events: none;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,0) 57%, rgba(1,1,1,1) 100%);
+}
+
+.card{
+    width: calc(100%/6); 
+    /* calc(100% / 6) because we have 6 cards */
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    border-right: 7px solid rgb(255, 0, 0);
+    transition: width 1s;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+}
+
+.card:last-child{
+    border: none;
+}
+
+.card::before{
+    content: '';
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    transform: translateY(-50%);
+    box-shadow: inset 0 0 20px #f00;
+    opacity: .6;
+    transition: width 1s;
+}
+
+.card::after{
+    content: '';
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 1s;
+}
+
+.car-img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-height: 100%;
+    min-width: 600px;
+    transform: translate(-50%, -50%);
+}
+
+.content{
+    z-index: 10;
+    color: #fff;
+    opacity: 0;
+    animation: none;
+    transition: .5s;
+    transform: translateY(-30px);
+}
+
+.content h2{
+    font-size: 3rem;
+    color: #f00;
+}
+
+.content p{
+    font-size: 17px;
+    margin: 50px 0;
+}
+
+.content .btn{
+    padding: 10px 20px;
+    border: 1px solid #f00;
+    border-radius: 5px;
+    background: transparent;
+    color: #f00;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: #fff;
+    background: #f00;
+}
+
+.card:hover{
+    width: 50vw;
+}
+
+.card:hover::after{
+    opacity: 1;
+}
+
+.card:hover .content{
+    animation: show .5s forwards 1;
+    animation-delay: .8s;
+}
+
+@keyframes show{
+    0%{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
